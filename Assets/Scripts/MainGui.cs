@@ -412,10 +412,6 @@ public class MainGui : MonoBehaviour {
 
 	}
 
-	void Update() {
-
-	}
-
 	void ShowFullMaterial() {
 		CloseWindows();
 		FixSize();
