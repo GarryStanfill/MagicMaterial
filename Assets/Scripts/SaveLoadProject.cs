@@ -99,10 +99,17 @@ public class SaveLoadProject : MonoBehaviour {
 	[DllImport ("FreeImage")]
 	private static extern FIBITMAP FreeImage_MakeThumbnail( FIBITMAP dib, int max_pixel_size, bool convert );
 
+    MapController diffuseMap;
+    [SerializeField] DKGGameEvent DiffuseMapOpenedGameEvent;
 
+    MapController heightMap;
+    [SerializeField] DKGGameEvent HeightMapOpenedGameEvent;
 	
 	// Use this for initialization
 	void Start () {
+
+        diffuseMap = GameObject.Find("Controllers/DiffuseMapController").GetComponent<MapController>();
+        heightMap = GameObject.Find("Controllers/HeightMapController").GetComponent<MapController>();
 
 		if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer) {
 			pathChar = '\\';
@@ -111,11 +118,6 @@ public class SaveLoadProject : MonoBehaviour {
 		}
 
 		thisProject = new ProjectObject ();
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
 	
 	}
 
@@ -521,9 +523,13 @@ public class SaveLoadProject : MonoBehaviour {
 			switch( textureToLoad ){
 			case MapType.height:
 				mainGui._HeightMap = newTexture;
+                heightMap._TextureMap = newTexture;
+                HeightMapOpenedGameEvent.Raise();
 				break;
 			case MapType.diffuse:
 				mainGui._DiffuseMap = newTexture;
+                diffuseMap._TextureMap = newTexture;
+                DiffuseMapOpenedGameEvent.Raise();
 				break;
 			case MapType.diffuseOriginal:
 				mainGui._DiffuseMapOriginal = newTexture;

@@ -419,13 +419,6 @@ public class MainGui : MonoBehaviour {
 		MaterialGuiScript.Initialize();
 	}
 
-	void Fullscreen() {
-		if (Screen.fullScreen) {
-			Screen.fullScreen = false;
-		} else {
-			Screen.fullScreen = true;
-		}
-	}
 
 	void SetFileMaskImage() {
 		fileBrowser.fileMasks = "*.png;*.jpg;*.jpeg;*.tga;*.bmp;*.tif";
@@ -440,11 +433,11 @@ public class MainGui : MonoBehaviour {
 		// 					Unhidable Buttons				//
 		//==================================================//
 
-		if (GUI.Button (new Rect(Screen.width - 80, Screen.height - 40, 70, 30), "Quit")) {
+		/*if (GUI.Button (new Rect(Screen.width - 80, Screen.height - 40, 70, 30), "Quit")) {
 			Application.Quit();
-		}
+		}*/
 
-		GUI.enabled = false;
+		/*GUI.enabled = false;
 		if (Screen.fullScreen) {
 			if (GUI.Button (new Rect (Screen.width - 190, Screen.height - 40, 100, 30), "Windowed")) {
 				Fullscreen();
@@ -455,11 +448,12 @@ public class MainGui : MonoBehaviour {
 			}
 		}
 		GUI.enabled = true;
+        */
 
-		if (GUI.Button (new Rect(Screen.width - 260, 10, 140, 30), "Make Suggestion")) {
+		/*if (GUI.Button (new Rect(Screen.width - 260, 10, 140, 30), "Make Suggestion")) {
 			SuggestionGuiObject.SetActive(true);
-		}
-
+		}*/
+/*
 		if( hideGui == false ){
 			if (GUI.Button (new Rect(Screen.width - 110, 10, 100, 30), "Hide Gui")) {
 				hideGui = true;
@@ -476,7 +470,7 @@ public class MainGui : MonoBehaviour {
 			}
 			return;
 		}
-
+        */
 		//==================================================//
 		// 						Main Gui					//
 		//==================================================//
@@ -568,7 +562,7 @@ public class MainGui : MonoBehaviour {
 		}
 		GUI.enabled = true;
 
-
+/*
 		//==============================//
 		// 			Diffuse Map			//
 		//==============================//
@@ -1099,12 +1093,12 @@ public class MainGui : MonoBehaviour {
 			SetFileMaskProject();
 			fileBrowser.ShowBrowser( "Load Project", this.LoadProject );
 		}
-
+*/
 		//======================================//
 		//			Property Map Settings		//
 		//======================================//
 
-		GUI.Label (new Rect (offsetX + 130, offsetY + 20, 100, 25), "Property Map");
+/*		GUI.Label (new Rect (offsetX + 130, offsetY + 20, 100, 25), "Property Map");
 
 		if (propRedChoose) { GUI.enabled = false; } else { GUI.enabled = true; }
 		GUI.Label( new Rect (offsetX + 100, offsetY + 45, 20, 20), "R:" );
@@ -1200,7 +1194,7 @@ public class MainGui : MonoBehaviour {
 			SaveFile(QuicksavePathProperty);
 		}
 		GUI.enabled = true;
-
+        */
 
 		//==========================//
 		// 		View Buttons		//
@@ -1208,7 +1202,7 @@ public class MainGui : MonoBehaviour {
 
 		offsetX = 430;
 		offsetY = 280;
-
+        /*
 		if (GUI.Button (new Rect(offsetX, offsetY, 100, 40), "Post Process")) {
 			if( PostProcessGuiObject.activeSelf == true ){
 				PostProcessGuiObject.SetActive(false);
@@ -1285,6 +1279,7 @@ public class MainGui : MonoBehaviour {
 				clearTextures = false;
 			}
 		}
+        */
 
 		GUI.enabled = true;
 
@@ -1373,7 +1368,13 @@ public class MainGui : MonoBehaviour {
 
 	}
 
-	void ClearTexture( Texture2D textureToClear ){
+    public void PasteFile()
+    {
+        ClearTexture(mapTypeToLoad);
+        SaveLoadProjectScript.PasteFile(mapTypeToLoad);
+    }
+
+    void ClearTexture( Texture2D textureToClear ){
 
 		if (textureToClear) {
 			Destroy (textureToClear);
@@ -1664,10 +1665,6 @@ public class MainGui : MonoBehaviour {
 		SaveLoadProjectScript.CopyFile (textureToSave);
 	}
 
-	void PasteFile() {
-		ClearTexture (mapTypeToLoad);
-		SaveLoadProjectScript.PasteFile (mapTypeToLoad);
-	}
 
 	void OpenFile (string pathToFile) {
 		if (pathToFile == null) {
