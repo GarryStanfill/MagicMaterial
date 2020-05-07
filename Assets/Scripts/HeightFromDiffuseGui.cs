@@ -182,6 +182,8 @@ public class HeightFromDiffuseGui : MonoBehaviour {
 	
 	public MainGui MainGuiScript;
 
+    [SerializeField] MapController heightMapController;
+
     RenderTexture _TempBlurMap;
 	RenderTexture _BlurMap0;
 	RenderTexture _BlurMap1;
@@ -1014,7 +1016,11 @@ public class HeightFromDiffuseGui : MonoBehaviour {
 		MainGuiScript._HeightMap = new Texture2D( _TempHeightMap.width, _TempHeightMap.height, TextureFormat.ARGB32, true, true );
 		MainGuiScript._HeightMap.ReadPixels(new Rect(0, 0, _TempHeightMap.width, _TempHeightMap.height), 0, 0);
 		MainGuiScript._HeightMap.Apply();
-		RenderTexture.active = null;
+        heightMapController._TextureMap = new Texture2D(_TempHeightMap.width, _TempHeightMap.height, TextureFormat.ARGB32, true, true); // <-- New System
+		heightMapController._TextureMap.ReadPixels(new Rect(0, 0, _TempHeightMap.width, _TempHeightMap.height), 0, 0);
+		heightMapController._TextureMap.Apply();
+        heightMapController.SetPreviewImage();
+        RenderTexture.active = null;
 
 		// Save high fidelity for normal making
 		if (MainGuiScript._HDHeightMap != null) {

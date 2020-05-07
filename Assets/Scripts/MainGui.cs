@@ -547,9 +547,9 @@ public class MainGui : MonoBehaviour {
 		if (GUI.Button (new Rect(offsetX + 5, offsetY + 220, 50, 20), "Create")) {
 			CloseWindows();
 			FixSize();
-			HeightFromDiffuseGuiObject.SetActive(true);
-			HeightFromDiffuseGuiScript.NewTexture();
-			HeightFromDiffuseGuiScript.DoStuff();
+			//HeightFromDiffuseGuiObject.SetActive(true);
+			//HeightFromDiffuseGuiScript.NewTexture();
+			//HeightFromDiffuseGuiScript.DoStuff();
 		}
 		GUI.enabled = true;
 

@@ -140,11 +140,6 @@ public class SettingsGui : MonoBehaviour {
 
 		mainGui.SetFormat( settings.fileFormat );
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	void DoMyWindow ( int windowID ) {
 
